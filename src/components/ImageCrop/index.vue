@@ -59,8 +59,19 @@ export interface IPosition {
 }
 
 export interface IKtBrickImageCrop {
-  imageSelect(): void;
-  completedImage(): Promise<IResult>;
+  /**
+   * 方式1 选择一张图片进行处理
+   */
+  selectImage(): void;
+  /**
+   * 方式2 设置一张图片进行处理
+   * @param file 图片信息
+   */
+  setImage(file: ArrayBuffer): void;
+  /**
+   * 获取编辑结果
+   */
+  cropImage(): Promise<IResult>;
 }
 
 export type KtAspectRatioType = "free" | "16:9" | "4:3" | "1:1" | "3:4" | "9:16";
@@ -86,8 +97,19 @@ class KtBrickImageCrop implements IKtBrickImageCrop {
     this.moveParam = null;
   }
 
-  imageSelect() {
+  selectImage() {
     inputImageRef.value?.click();
+  }
+
+  setImage(file: ArrayBuffer): void {
+    // 读取图片文件
+    const reader = new FileReader();
+    reader.onload = function (event: ProgressEvent<FileReader>) {
+      const result = event.target;
+      backLayerRef.value?.init(result?.result as string);
+    };
+    reader.readAsDataURL(new Blob([file]));
+    this.currentFile = file;
   }
 
   // 处理图片选择
@@ -132,7 +154,7 @@ class KtBrickImageCrop implements IKtBrickImageCrop {
     previewRef.value!.src = dataUrl;
   }
 
-  completedImage(): Promise<IResult> {
+  cropImage(): Promise<IResult> {
     return new Promise<IResult>((y, n) => {
       initWasm().then((intance) => {
         console.log(intance.ImageCompressor.hi());
