@@ -1,6 +1,6 @@
 # 积木图片裁剪
 
-<img src="https://github.com/KeithWang2019/kt-brick-image/blob/master/logo.png" alt="" width="120" height="120">
+<img src="https://brick.cangsg.com/logo.png" alt="" width="120" height="120">
 
 一款轻量、易用的 Vue 图片裁剪开源组件，专注于提供高效且灵活的图片裁剪解决方案。
 
@@ -70,9 +70,9 @@ function handleCompetedImage() {
 
 ## 组件预览
 
-<img src="./images/001.png" width="500" alt="">
+<img src="https://brick.cangsg.com/images/001.png" width="500" alt="">
 
-<img src="./images/002.png" width="500" alt="">
+<img src="https://brick.cangsg.com/images/002.png" width="500" alt="">
 
 ## 组件包装
 使用vuetify对组件进行简单包装
@@ -159,9 +159,9 @@ defineExpose<IKtUploadImageCut>(uploadImageCut);
 </script>
 ```
 
-<img src="./images/003.png" width="500" alt="">
+<img src="https://brick.cangsg.com/images/003.png" width="500" alt="">
 
-<img src="./images/004.png" width="500" alt="">
+<img src="https://brick.cangsg.com/images/004.png" width="500" alt="">
 
 ## License
 
