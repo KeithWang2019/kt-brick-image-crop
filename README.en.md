@@ -1,42 +1,40 @@
-# 积木图片裁剪
+# Brick Image Crop
 
 <img src="https://brick.cangsg.com/logo.png" alt="" width="120" height="120">
 
- [English](./README.en.md "English")
+A lightweight and easy-to-use Vue image cropping open-source component, focusing on providing efficient and flexible image cropping solutions.
 
-一款轻量、易用的 Vue 图片裁剪开源组件，专注于提供高效且灵活的图片裁剪解决方案。
+## Core Features
 
-## 核心特性
+- **Multi-format Support**：Perfectly compatible with mainstream image formats like PNG and JPG, meeting daily development needs
+- **Flexible Cropping Modes**：Supports both free cropping and aspect ratio-based cropping, allowing quick switching according to scenarios
+- **Precise Interaction Control**：Built-in drag restriction to prevent cropping area from exceeding image boundaries, enhancing user experience
+- **Low-intrusive Integration**：Designed as a brick component, it won't pollute existing project code and can be referenced without complex configuration
 
-- **多格式支持**：完美兼容 PNG、JPG 主流图片格式，满足日常开发需求
-- **灵活裁剪模式**：同时支持自由裁剪和比例设置裁剪，可根据场景快速切换
-- **精细交互控制**：内置拖拽限制功能，避免裁剪区域超出图片范围，提升操作体验
-- **低侵入性集成**：作为积木组件设计，不会污染项目原有代码，无需复杂配置即可引用
+## Installation and Usage
 
-## 安装与引用
+The component supports installation via npm or yarn. After installation, it can be directly imported and used in Vue projects. The specific steps are as follows:
 
-组件支持 npm 或 yarn 安装，安装后可直接在 Vue 项目中引入使用，具体步骤如下：
-
-1. 安装组件
+1. Install the component
 
 ```bash
-# npm 安装
+# Install via npm
 npm install kt-brick-image-crop --save
 
-# yarn 安装
+# Install via yarn
 yarn add kt-brick-image-crop
 ```
 
-2. 项目引用
+2. Project Reference
 
 ```js
 <template>
   <kt-brick-image-crop ref="imageCropRef" aspect-ratio="free" />
-  <!-- 方式一 选择图片 -->
+  <!-- Method 1: Select Image -->
   <input type="button" value="选择图片" @click="handleSelectImage" />
-  <!-- 方式二 设置图片 -->
+  <!-- Method 2: Set Image -->
   <input type="file" ref="inputImageRef" accept="image/*" @change="handleLoadImage" />
-  <!-- 获取结果 -->
+  <!-- Get Result -->
   <input type="button" value="下载图片" @click="handleCompetedImage" />
 </template>
 
@@ -46,12 +44,12 @@ import "kt-brick-image-crop/dist/kt-brick-image-crop.css";
 
 const imageCropRef = ref<IKtBrickImageCrop>();
 
-// 方式一 选择图片
+// Method 1: Select Image
 function handleSelectImage() {
   imageCropRef?.imageSelect();
 }
 
-// 方式二 设置图片 适用于已经存在了图片数据的情况
+// Method 2: Set Image (suitable for cases where image data already exists)
 function handleLoadImage(e: Event) {
   const input = e.target as HTMLInputElement;
 
@@ -61,7 +59,7 @@ function handleLoadImage(e: Event) {
   imageCropRef.value?.setImage(await file.arrayBuffer());
 }
 
-// 获取编辑结果结果
+// Get editing result
 function handleCompetedImage() {
   imageCropRef.value?.cropImage().then((result) => {
     downloadImage(result.data, result.format);
@@ -70,14 +68,14 @@ function handleCompetedImage() {
 </script>
 ```
 
-## 组件预览
+## Component Preview
 
 <img src="https://brick.cangsg.com/images/001.png" width="500" alt="">
 
 <img src="https://brick.cangsg.com/images/002.png" width="500" alt="">
 
-## 组件包装
-使用vuetify对组件进行简单包装
+## Component Wrapping
+Simple wrapping of the component using Vuetify
 ```js
 <template>
   <v-dialog width="800" v-model="dialogRef.isActive" persistent >
@@ -98,7 +96,7 @@ function handleCompetedImage() {
             prepend-icon="mdi-progress-upload"
             style="align-self: flex-start"
             @click="() => imageCropRef?.selectImage()"
-            >选择图片&nbsp;</v-btn
+            >Select Image&nbsp;</v-btn
           >
           <v-spacer></v-spacer>
           <v-btn
@@ -108,7 +106,7 @@ function handleCompetedImage() {
             variant="flat"
             prepend-icon="mdi-alpha-s-box-outline"
             @click="() => handleCompetedImage()"
-            >确定&nbsp;</v-btn
+            >Confirm&nbsp;</v-btn
           >
           <v-btn
             class="text-none"
@@ -117,7 +115,7 @@ function handleCompetedImage() {
             variant="outlined"
             prepend-icon="mdi-window-close"
             @click="isActive.value = false"
-            >关闭&nbsp;</v-btn
+            >Close&nbsp;</v-btn
           >
         </v-card-actions>
       </v-card>

@@ -1,6 +1,6 @@
 {
   "name": "kt-brick-image-crop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "dist/kt-brick-image-crop.umd.js",
   "module": "dist/kt-brick-image-crop.es.js",
