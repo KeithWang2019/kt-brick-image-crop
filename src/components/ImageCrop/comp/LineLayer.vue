@@ -26,13 +26,13 @@ class LineLayer implements ILineLayer {
       for (let i = 1; i <= 4; i++) {
         switch (i) {
           case 1:
-            lineLayerArrayRef.value![i - 1]!.style.left = position.x1 - 1 + "px";
+            lineLayerArrayRef.value![i - 1]!.style.left = position.x1 + "px";
             break;
           case 2:
             lineLayerArrayRef.value![i - 1]!.style.left = position.x2 + "px";
             break;
           case 3:
-            lineLayerArrayRef.value![i - 1]!.style.top = position.y1 - 1 + "px";
+            lineLayerArrayRef.value![i - 1]!.style.top = position.y1 + "px";
             break;
           case 4:
             lineLayerArrayRef.value![i - 1]!.style.top = position.y4 + "px";
